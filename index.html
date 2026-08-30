@@ -6,43 +6,31 @@
 <title>AirSonka — Photography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="frame-marks" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <div class="header-inner">
-    <p class="eyebrow">Photography — Roll No. 001</p>
-    <h1 class="site-title">AirSonka</h1>
-    <p class="tagline">A working contact sheet. Selected frames, unedited order.</p>
-  </div>
+  <p class="eyebrow">Photography</p>
+  <h1 class="site-title">AirSonka</h1>
+  <p class="tagline">Selected photographs, organized by series.</p>
   <nav class="site-nav">
-    <a href="#work">Work</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main id="work" class="sheet">
-  <div id="gallery" class="gallery" role="list">
-    <!-- Frames injected by js/script.js from js/photos-data.js -->
-  </div>
+<main id="series-container">
+  <!-- Series sections injected by js/script.js from js/photos-data.js + js/series-data.js -->
 </main>
 
 <section id="about" class="about">
-  <div class="frame-marks" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
   <div class="about-inner">
     <p class="eyebrow">About</p>
     <p class="about-text">
-      Photographs from behind the lens of AirSonka — shot, developed, and
-      sequenced one roll at a time. Replace this paragraph with a couple of
-      sentences about who you are and what you shoot.
+      Photographs from behind the lens of AirSonka. Replace this paragraph
+      with a couple of sentences about who you are and what you shoot.
     </p>
   </div>
 </section>
@@ -64,6 +52,7 @@
 </div>
 
 <script src="js/photos-data.js"></script>
+<script src="js/series-data.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
