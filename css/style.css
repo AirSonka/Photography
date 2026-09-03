@@ -155,6 +155,36 @@ a { color: inherit; }
   gap: 2.2rem 1.6rem;
 }
 
+/* Desktop only: fewer columns, more breathing room. Mobile layout above
+   (and everything below ~900px) is untouched. */
+@media (min-width: 900px) {
+  .series {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .grid {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .series-heading,
+  .series-meta {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4.5rem 3rem;
+  }
+  .about-inner,
+  .footer-inner {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .frame {
   cursor: pointer;
 }
