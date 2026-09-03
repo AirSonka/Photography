@@ -4,6 +4,27 @@
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxCaption = document.getElementById("lightbox-caption");
   const lightboxClose = document.querySelector(".lightbox-close");
+  const heroImage = document.getElementById("hero-image");
+
+  // Use the first photo in the collection as the hero background.
+  // To feature a different photo, simply move it to the top of the
+  // PHOTOS array in js/photos-data.js.
+  if (heroImage && PHOTOS.length > 0) {
+    heroImage.style.backgroundImage = 'url("' + PHOTOS[0].url + '")';
+  }
+
+  // Fade-in-on-scroll for photo frames and section headings.
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+  );
 
   function openLightbox(photo) {
     lightboxImg.src = photo.url;
@@ -64,9 +85,10 @@
     section.id = "series-" + key.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
     const heading = document.createElement("h2");
-    heading.className = "series-heading";
+    heading.className = "series-heading reveal";
     heading.textContent = meta.title || key;
     section.appendChild(heading);
+    revealObserver.observe(heading);
 
     const metaLine = document.createElement("p");
     metaLine.className = "series-meta";
@@ -79,7 +101,7 @@
 
     photos.forEach((photo) => {
       const frame = document.createElement("div");
-      frame.className = "frame";
+      frame.className = "frame reveal";
       frame.setAttribute("role", "listitem");
       frame.setAttribute("tabindex", "0");
 
@@ -108,6 +130,7 @@
       frame.appendChild(photoWrap);
       frame.appendChild(caption);
       grid.appendChild(frame);
+      revealObserver.observe(frame);
 
       frame.addEventListener("click", () => openLightbox(photo));
       frame.addEventListener("keydown", (e) => {

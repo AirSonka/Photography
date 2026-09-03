@@ -1,5 +1,5 @@
 const PHOTOS = [
-  { url: "images/001.jpg", title: "Untitled #001", caption: "", category: "" },
+  { url: "images/001.jpg", title: "Tarifa", caption: "", category: "" },
   { url: "images/002.jpg", title: "Untitled #002", caption: "", category: "" },
   { url: "images/003.jpg", title: "Untitled #003", caption: "", category: "" },
   { url: "images/004.jpg", title: "Like a LUZid dream", caption: "...in El Palmar, Andalusia", category: "Tales of Happiness" },
