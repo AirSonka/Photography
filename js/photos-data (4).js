@@ -10,7 +10,7 @@ const PHOTOS = [
   { url: "images/009.jpg", title: "Untitled #009", caption: "", category: "" },
   { url: "images/010.jpg", title: "En pleno día", caption: "Cádiz", category: "" },
   { url: "images/011.jpg", title: "Miro", caption: "", category: "That Little Fellow" },
-  { url: "images/012.jpg", title: "Untitled", caption: "", category: "" },
+  { url: "images/012.jpg", title: "Untitled", caption: "", category: "Tales of Existence" },
   { url: "images/013.jpg", title: "Untitled #013", caption: "", category: "" },
   { url: "images/014.jpg", title: "Untitled #014", caption: "", category: "" },
   { url: "images/015.jpg", title: "Liberté de l'âme", caption: "Nous sommes plus libres que nous croyons", category: "Tales of Freedom" },
