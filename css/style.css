@@ -65,45 +65,52 @@ a { color: inherit; }
 }
 
 /* Sticky nav */
-/* Sticky top bar (nav + filter pills together) */
+/* Sticky top bar (single line: brand, filter pills, nav links) */
 .top-bar {
   position: sticky;
   top: 0;
   z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.75rem clamp(1.2rem, 5vw, 3.5rem);
   background: rgba(246, 240, 228, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
 }
-.site-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem clamp(1.2rem, 5vw, 3.5rem) 0.7rem;
-}
 .nav-brand {
+  flex: 0 0 auto;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   text-decoration: none;
   color: var(--ink);
 }
-.nav-links { display: flex; gap: 1.6rem; font-size: 0.82rem; }
+.nav-links {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 1.3rem;
+  font-size: 0.78rem;
+}
 .nav-links a {
   text-decoration: none;
   color: var(--muted);
   transition: color 0.2s ease;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--accent); border-color: var(--accent); }
 
-/* Filter bar */
+/* Filter bar — sits inline between brand and nav links, scrolls
+   horizontally on its own if there isn't room for every pill. */
 .filter-bar {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.6rem clamp(1.2rem, 5vw, 3.5rem) 1rem;
   scrollbar-width: none;
 }
 .filter-bar::-webkit-scrollbar { display: none; }
@@ -113,8 +120,8 @@ a { color: inherit; }
   border: 1px solid var(--rule);
   color: var(--muted);
   font-family: var(--sans);
-  font-size: 0.78rem;
-  padding: 0.4rem 0.9rem;
+  font-size: 0.74rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
@@ -128,6 +135,10 @@ a { color: inherit; }
   background: var(--ink);
   border-color: var(--ink);
   color: var(--bg);
+}
+@media (max-width: 640px) {
+  .top-bar { gap: 0.7rem; }
+  .nav-links { gap: 0.8rem; }
 }
 
 /* Hero */
@@ -171,7 +182,7 @@ a { color: inherit; }
 .series {
   padding: 3.2rem clamp(1.2rem, 5vw, 3.5rem);
   border-bottom: 1px solid var(--rule);
-  scroll-margin-top: 96px;
+  scroll-margin-top: 64px;
 }
 .series-heading {
   font-family: var(--serif);
