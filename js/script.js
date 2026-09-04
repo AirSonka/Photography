@@ -6,11 +6,14 @@
   const lightboxClose = document.querySelector(".lightbox-close");
   const heroImage = document.getElementById("hero-image");
 
-  // Use the first photo in the collection as the hero background.
-  // To feature a different photo, simply move it to the top of the
-  // PHOTOS array in js/photos-data.js.
-  if (heroImage && PHOTOS.length > 0) {
-    heroImage.style.backgroundImage = 'url("' + PHOTOS[0].url + '")';
+  // Display order is reversed: the LAST photo in js/photos-data.js shows
+  // first on the site (and becomes the hero image). This only affects
+  // display order — your actual photos-data.js file is untouched.
+  const ORDERED_PHOTOS = PHOTOS.slice().reverse();
+
+  // Use the first photo in display order as the hero background.
+  if (heroImage && ORDERED_PHOTOS.length > 0) {
+    heroImage.style.backgroundImage = 'url("' + ORDERED_PHOTOS[0].url + '")';
   }
 
   // Fade-in-on-scroll for photo frames and section headings.
@@ -59,7 +62,7 @@
   const groups = new Map();
   const order = [];
 
-  PHOTOS.forEach((photo) => {
+  ORDERED_PHOTOS.forEach((photo) => {
     const key = (photo.category && photo.category.trim()) || "Uncategorized";
     if (!groups.has(key)) {
       groups.set(key, []);
@@ -144,4 +147,51 @@
     section.appendChild(grid);
     main.appendChild(section);
   });
+
+  // Build the sticky filter bar: one pill per series, in the same order
+  // as rendered, plus an "All" pill that shows everything.
+  const filterBar = document.getElementById("filter-bar");
+  if (filterBar && renderOrder.length > 1) {
+    const sections = renderOrder.map((key) =>
+      document.getElementById("series-" + key.toLowerCase().replace(/[^a-z0-9]+/g, "-"))
+    );
+
+    function setActivePill(btn) {
+      filterBar.querySelectorAll(".filter-pill").forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function applyFilter(targetKey) {
+      renderOrder.forEach((key, i) => {
+        const section = sections[i];
+        if (!section) return;
+        section.hidden = targetKey !== "all" && key !== targetKey;
+      });
+    }
+
+    const allPill = document.createElement("button");
+    allPill.type = "button";
+    allPill.className = "filter-pill active";
+    allPill.textContent = "All";
+    allPill.addEventListener("click", () => {
+      setActivePill(allPill);
+      applyFilter("all");
+    });
+    filterBar.appendChild(allPill);
+
+    renderOrder.forEach((key) => {
+      const meta = seriesMeta.get(key) || { title: key };
+      const pill = document.createElement("button");
+      pill.type = "button";
+      pill.className = "filter-pill";
+      pill.textContent = meta.title || key;
+      pill.addEventListener("click", () => {
+        setActivePill(pill);
+        applyFilter(key);
+        document.getElementById("series-" + key.toLowerCase().replace(/[^a-z0-9]+/g, "-"))
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      filterBar.appendChild(pill);
+    });
+  }
 })();
