@@ -284,7 +284,4 @@ const PHOTOS = [
   { url: "images/283.jpg", title: "Untitled #283", caption: "", category: "" },
   { url: "images/284.jpg", title: "Untitled #284", caption: "", category: "" },
   { url: "images/285.jpg", title: "Untitled #285", caption: "", category: "" },
-  { url: "images/286.jpg", title: "Untitled #286", caption: "", category: "" },
-  { url: "images/287.jpg", title: "Untitled #287", caption: "", category: "" },
-  { url: "images/288.jpg", title: "Untitled #288", caption: "", category: "" },
 ];
